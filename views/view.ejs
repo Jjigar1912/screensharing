@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Views</title>
+</head>
+<body>
+    
+    <img id="ss" />
+
+
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
+    <script>
+        const socket = io();
+
+        socket.on('message',(data)=>{
+            document.getElementById("ss").setAttribute('src','');    
+            document.getElementById("ss").setAttribute('src', 'data:image/png;base64,' + data.toString('base64'));
+            socket.emit('prevImage',data)
+        })
+
+      </script>
+
+</body>
+</html>
